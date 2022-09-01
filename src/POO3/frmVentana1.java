@@ -54,13 +54,15 @@ public class frmVentana1 extends javax.swing.JFrame
         jLabel5.setText("Ingrese los datos del Dispositivo");
 
         jtfTipo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfTipo.setText("jtfTipo");
+        jtfTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfTipoActionPerformed(evt);
+            }
+        });
 
         jtfFolio.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfFolio.setText("jtfFolio");
 
         jtfMagnitud.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfMagnitud.setText("jtfMagnitud");
 
         jbnInsertar.setText("Insertar");
         jbnInsertar.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +164,9 @@ public class frmVentana1 extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Creacion del objeto
+    Dispositivo objeto = new Dispositivo(); 
+    
     
     //EVENTO Insertar 
     private void jbnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnInsertarActionPerformed
@@ -169,29 +174,26 @@ public class frmVentana1 extends javax.swing.JFrame
         /*Se obtienen los datos del registro y los guarda en un objeto de tipo Dispositivo
         Los almacena en un arreglo de tipo Dispositivo*/
         
+                 
+        
         //Los datos en la vista estan almacenados en las varibles
         String tipoString = jtfTipo.getText();
-        String folioString = jtfFolio.getText();
-        String magnitudString = jtfMagnitud.getText();
-        float magnitudFloat = Float.parseFloat(magnitudString);
-        //float magnitudFloat = Float.parseFloat(jtfMagnitud.getText());
-        
-        Dispositivo objeto = new Dispositivo();         
-        
-        
         objeto.setTipo(tipoString);
+        String folioString = jtfFolio.getText();
         objeto.setFolio(folioString);
+        float magnitudFloat = Float.parseFloat(jtfMagnitud.getText());
         objeto.setMedidaPantalla(magnitudFloat);
         
-        //ControladorDispositivo
-        Dispositivo[] dispositivo = new Dispositivo[20];
-        
-                
+        /*String magnitudString = jtfMagnitud.getText();
+        float magnitudFloat = Float.parseFloat(magnitudString);*/
+       
         
         //Esto hace que cuando se registre un usuario se ponga en blanco
         jtfTipo.setText("");
         jtfFolio.setText("");
         jtfMagnitud.setText("");
+        
+        mensajeDeAlerta("Usuario Registrado" , "Registro" );
         
     }//GEN-LAST:event_jbnInsertarActionPerformed
 
@@ -205,6 +207,10 @@ public class frmVentana1 extends javax.swing.JFrame
     //EVENTO Consultar
     private void jbnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnConsultarActionPerformed
         // TODO add your handling code here:
+        
+        this.jtfTipo.setText(objeto.getTipo());
+        this.jtfFolio.setText(objeto.getFolio());
+        this.jtfMagnitud.setText(String.valueOf(objeto.getMedidaPantalla()));
         
         
         
@@ -223,6 +229,10 @@ public class frmVentana1 extends javax.swing.JFrame
         // TODO add your handling code here:
          dispose(); //Este metodo sirve para terminar el programa
     }//GEN-LAST:event_jbnSalirActionPerformed
+
+    private void jtfTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfTipoActionPerformed
 
 
     public static void main(String args[]) 
